@@ -123,23 +123,25 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
   if (chosenXAxis === "fed_releases") {
     labelx = "Federal Releases:";
+    // leave alone
   }
-  else if (chosenXAxis === "state_releases") {
-    labelx = "State Releases:";
+  else if (chosenXAxis === "fed_admissions") {
+    labelx = "Federal Admissions:";
     labelposition = [80, -60];
   }
   else {
-      labelx = "state_releases:";
+      labelx = "State Releases";
       labelposition = [80, -60];
   }
   if (chosenYAxis === "fed_admissions") {
-    labely = "Federal Admissions";
+    labely = "Federal Admissions: "; 
+    // leave alone
   }
   else if (chosenYAxis === "state_admissions") {
-    labely = "State Admissions";
+    labely = "State Admissions:";
   }
   else {
-      labely = "state_admissions";
+      labely = "Federal Admissions";
   }
 
 
@@ -214,25 +216,25 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
     .attr("r", "12")
     .attr("fill", "lightblue")
     .attr("opacity", ".6")
-    .classed("stateCircle", true);
+    .classed("yearCircle", true);
 
   // append initial circles text
   var TextGroup= dataCircles
     .append("text")
     .attr("text-anchor", "middle")
     .attr("font-size", "10px")
-    .text(d => d.abbr)
+    .text(d => d.year)
     .attr("x", d => xLinearScale(d[chosenXAxis]))
     .attr("y", d => yLinearScale(d[chosenYAxis]))
     .style("fill", "black")
     .attr("opacity", ".7")
-    .classed("stateText", true);
+    .classed("yearText", true);
 
   // Create group for the 3 x-axis labels
   var xlabelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
-  var povertyLabel = xlabelsGroup.append("text")
+  var fedreleasesLabel = xlabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 20)
     .attr("value", "fed_releases") // value to grab for event listener
@@ -242,7 +244,7 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
   var ageLabel = xlabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
-    .attr("value", "") // value to grab for event listener
+    .attr("value", "state_releases") // value to grab for event listener
     .classed("inactive", true)
     .text("State Releases");
 
@@ -312,7 +314,7 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
 
         // changes classes to change bold text
         if (chosenXAxis === "Federal Releases") {
-         povertyLabel
+          fedreleasesLabel
             .classed("active", true)
             .classed("inactive", false);
           ageLabel
@@ -323,7 +325,7 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
             .classed("inactive", true);
         }
         else if (chosenXAxis === "age") {
-          povertyLabel
+          fedreleasesLabel
             .classed("active", false)
             .classed("inactive", true);
           ageLabel
@@ -334,7 +336,7 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
             .classed("inactive", true);
         }
         else {
-          povertyLabel
+          fedreleasesLabel
             .classed("active", false)
             .classed("inactive", true);
           ageLabel
