@@ -303,7 +303,15 @@ var cities = [
  ];
 
 // An array which will be used to store created cityMarkers
+// var jailIcon = L.icon({
+//   iconUrl: "jail_icon.png",
+//   iconSize: [25, 25],
+// });
+// var layers = {
+//   jail: new L.layerGroup()
+// };
 var cityMarkers = [];
+// var marker = L.marker([cities.location], {icon: jailIcon});
 
 for (var i = 0; i < cities.length; i++) {
   // loop through the cities array, create a new marker, push it to the cityMarkers array
