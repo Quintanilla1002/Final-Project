@@ -24,26 +24,26 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Initial Params
-var chosenXAxis = "fed_releases";
-var chosenYAxis = "fed_admissions";
+var chosenXAxis = "state_pop_13";
+var chosenYAxis = "inmate_pop_13";
 
 // function used for updating x-scale var upon click on axis label
-function xScale(admissionsData, chosenXAxis) {
+function xScale(jailData, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(admissionsData, d => d[chosenXAxis]) * .8,
-      d3.max(admissionsData, d => d[chosenXAxis]) * 1
+    .domain([d3.min(jailData, d => d[chosenXAxis]) * 0.8,
+      d3.max(jailData, d => d[chosenXAxis]) * 1.05
     ])
     .range([0, width]);
 
   return xLinearScale;
 
 }
-function yScale(admissionsData, chosenYAxis) {
+function yScale(jailData, chosenYAxis) {
     // create scales
     var yLinearScale = d3.scaleLinear()
-      .domain([d3.min(admissionsData, d => d[chosenYAxis]) * 0.8,
-        d3.max(admissionsData, d => d[chosenYAxis]) * 1.05
+      .domain([d3.min(jailData, d => d[chosenYAxis]) * 0.8,
+        d3.max(jailData, d => d[chosenYAxis]) * 1.05
       ])
       .range([height, 0]);
   
@@ -121,27 +121,25 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
   var labely;
   var labelposition = [80, -60]
 
-  if (chosenXAxis === "fed_releases") {
-    labelx = "Federal Releases:";
-    // leave alone
+  if (chosenXAxis === "state_pop_13") {
+    labelx = "2013 State Population:";
   }
-  else if (chosenXAxis === "fed_admissions") {
-    labelx = "Federal Admissions:";
+  else if (chosenXAxis === "state_pop_14") {
+    labelx = "2014 State Population:";
     labelposition = [80, -60];
   }
   else {
-      labelx = "State Releases";
+      labelx = "inmate_pop_13:";
       labelposition = [80, -60];
   }
-  if (chosenYAxis === "fed_admissions") {
-    labely = "Federal Admissions: "; 
-    // leave alone
+  if (chosenYAxis === "inmate_pop_14") {
+    labely = "2014 Inmate Population";
   }
-  else if (chosenYAxis === "state_admissions") {
-    labely = "State Admissions:";
+  else if (chosenYAxis === "inmate_pop_13") {
+    labely = "2013 Inmate Population";
   }
   else {
-      labely = "Federal Admissions";
+      labely = "inmate_pop_2014";
   }
 
 
@@ -149,7 +147,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     .attr("class", "tooltip")
     .offset(labelposition)
     .html(function(d) {
-      return (`${d.year}<br>${labelx} ${d[chosenXAxis]}<br>${labely} ${d[chosenYAxis]}`);
+      return (`${d.state}<br>${labelx} ${d[chosenXAxis]}<br>${labely} ${d[chosenYAxis]}`);
     });
 
   circlesGroup.call(toolTip);
@@ -175,21 +173,19 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
+d3.csv("../Resources/prison_custody_by_state.csv").then(function(jailData) {
 
   // parse data
-  admissionsData.forEach(function(data) {
-    data.fed_releases = +data.fed_releases;
-    data.state_releases = +data.state_releases;
-    // data.income = +data.income;
-    data.fed_admissions = +data.fed_admissions;
-    data.state_admissions = +data.state_admissions;
-    // data.healthcare = +data.healthcare;
+  jailData.forEach(function(data) {
+    data.state_pop_13 = +data.state_pop_13;
+    data.state_pop_14 = +data.state_pop_14;
+    data.inmate_pop_13 = +data.inmate_pop_13;
+    data.inmate_pop_14 = +data.inmate_pop_14;
   });
 
   // xLinearScale and yLinearScale functions from above 
-  var xLinearScale = xScale(admissionsData, chosenXAxis);
-  var yLinearScale = yScale(admissionsData, chosenYAxis);
+  var xLinearScale = xScale(jailData, chosenXAxis);
+  var yLinearScale = yScale(jailData, chosenYAxis);
 
   // Create initial axis functions
   var bottomAxis = d3.axisBottom(xLinearScale);
@@ -207,7 +203,7 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
 
   // append initial circles
   var dataCircles = chartGroup.selectAll("circlesGroup")
-    .data(admissionsData)
+    .data(jailData)
     .enter()
     var circlesGroup = dataCircles
     .append("circle")
@@ -216,72 +212,72 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
     .attr("r", "12")
     .attr("fill", "lightblue")
     .attr("opacity", ".6")
-    .classed("yearCircle", true);
+    .classed("stateCircle", true);
 
   // append initial circles text
   var TextGroup= dataCircles
     .append("text")
     .attr("text-anchor", "middle")
     .attr("font-size", "10px")
-    .text(d => d.year)
+    .text(d => d.state)
     .attr("x", d => xLinearScale(d[chosenXAxis]))
     .attr("y", d => yLinearScale(d[chosenYAxis]))
     .style("fill", "black")
     .attr("opacity", ".7")
-    .classed("yearText", true);
+    .classed("stateText", true);
 
   // Create group for the 3 x-axis labels
   var xlabelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
-  var fedreleasesLabel = xlabelsGroup.append("text")
+  var povertyLabel = xlabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 20)
-    .attr("value", "fed_releases") // value to grab for event listener
+    .attr("value", "state_pop_13") // value to grab for event listener
     .classed("active", true)
-    .text("Federal Releases");
+    .text("2013 State Population");
 
   var ageLabel = xlabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
-    .attr("value", "state_releases") // value to grab for event listener
+    .attr("value", "state_pop_14") // value to grab for event listener
     .classed("inactive", true)
-    .text("State Releases");
+    .text("2014 State population");
 
-  // var incomeLabel = xlabelsGroup.append("text")
-  //   .attr("x", 0)
-  //   .attr("y", 60)
-  //   .attr("value", "income") // value to grab for event listener
-  //   .classed("inactive", true)
-  //   .text("Household Income (Median)");
+//   var incomeLabel = xlabelsGroup.append("text")
+//     .attr("x", 0)
+//     .attr("y", 60)
+//     .attr("value", "income") // value to grab for event listener
+//     .classed("inactive", true)
+//     .text("Household Income (Median)");
   
   // Create group for the 3 y-axis labels
   var ylabelsGroup = chartGroup.append("g")
   .attr("transform", "rotate(-90)")
 
-  var obeseLabel = ylabelsGroup.append("text")
-    .attr("y", 10 - margin.left)
-    .attr("x", 0 - (height / 2))
-    .attr("dy", "1em")
-    .attr("value", "federal_admissions") // value to grab for event listener
-    .classed("inactive", true)
-    .text("Federal Admissions");
+//   var obeseLabel = ylabelsGroup.append("text")
+//     .attr("y", 10 - margin.left)
+//     .attr("x", 0 - (height / 2))
+//     .attr("dy", "1em")
+//     .attr("value", "inmate_pop_13") // value to grab for event listener
+//     .classed("inactive", true)
+//     .text("Obese (%)");
 
   var smokesLabel = ylabelsGroup.append("text")
     .attr("y", 30 - margin.left)
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
-    .attr("value", "state_admissions") // value to grab for event listener
+    .attr("value", "inmate_pop_14") // value to grab for event listener
     .classed("inactive", true)
-    .text("State Admissions");
+    .text("2014 Inmate Population");
 
-  // var healthcareLabel = ylabelsGroup.append("text")
-  //   .attr("y", 50 - margin.left)
-  //   .attr("x", 0 - (height / 2))
-  //   .attr("dy", "1em")
-  //   .attr("value", "healthcare") // value to grab for event listener
-  //   .classed("active", true)
-  //   .text("Lacks Healthcare (%)");
+  var healthcareLabel = ylabelsGroup.append("text")
+    .attr("y", 50 - margin.left)
+    .attr("x", 0 - (height / 2))
+    .attr("dy", "1em")
+    .attr("value", "inmate_pop_13") // value to grab for event listener
+    .classed("active", true)
+    .text("2013 Inmate Population");
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
@@ -300,7 +296,7 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
 
         // functions here found above csv import
         // updates x scale for new data
-        xLinearScale = xScale(admissionsData, chosenXAxis);
+        xLinearScale = xScale(healthData, chosenXAxis);
 
         // updates x axis with transition
         xAxis = renderXAxes(xLinearScale, xAxis);
@@ -313,38 +309,38 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
         circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
         // changes classes to change bold text
-        if (chosenXAxis === "Federal Releases") {
-          fedreleasesLabel
+        if (chosenXAxis === "state_pop_13") {
+         povertyLabel
             .classed("active", true)
             .classed("inactive", false);
           ageLabel
             .classed("active", false)
             .classed("inactive", true);
-          incomeLabel
-            .classed("active", false)
-            .classed("inactive", true);
+        //   incomeLabel
+        //     .classed("active", false)
+        //     .classed("inactive", true);
         }
-        else if (chosenXAxis === "age") {
-          fedreleasesLabel
+        else if (chosenXAxis === "state_pop_14") {
+          povertyLabel
             .classed("active", false)
             .classed("inactive", true);
           ageLabel
             .classed("active", true)
             .classed("inactive", false);
-          incomeLabel
-            .classed("active", false)
-            .classed("inactive", true);
+        //   incomeLabel
+        //     .classed("active", false)
+        //     .classed("inactive", true);
         }
         else {
-          fedreleasesLabel
+          povertyLabel
             .classed("active", false)
             .classed("inactive", true);
           ageLabel
             .classed("active", false)
             .classed("inactive", true);
-          // incomeLabel
-          //   .classed("active", true)
-          //   .classed("inactive", false);
+        //   incomeLabel
+        //     .classed("active", true)
+        //     .classed("inactive", false);
         }
       }
     });
@@ -362,7 +358,7 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
 
       // functions here found above csv import
       // updates y scale for new data
-      yLinearScale = yScale(admissionsData, chosenYAxis);
+      yLinearScale = yScale(jailData, chosenYAxis);
 
       // updates y axis with transition
       yAxis = renderYAxes(yLinearScale, yAxis);
@@ -374,10 +370,10 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
       circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
       // changes classes to change bold text
-      if (chosenYAxis === "Admissions") {
-       obeseLabel
-          .classed("active", true)
-          .classed("inactive", false);
+      if (chosenYAxis === "inmate_pop_13") {
+    //    obeseLabel
+    //       .classed("active", true)
+    //       .classed("inactive", false);
         smokesLabel
           .classed("active", false)
           .classed("inactive", true);
@@ -385,10 +381,10 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
           .classed("active", false)
           .classed("inactive", true);
       }
-      else if (chosenYAxis === "fed_admissions") {
-        obeseLabel
-          .classed("active", false)
-          .classed("inactive", true);
+      else if (chosenYAxis === "inmate_pop_14") {
+        // obeseLabel
+        //   .classed("active", false)
+        //   .classed("inactive", true);
         smokesLabel
           .classed("active", true)
           .classed("inactive", false);
@@ -397,9 +393,9 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
           .classed("inactive", true);
       }
       else {
-        obeseLabel
-          .classed("active", false)
-          .classed("inactive", true);
+        // obeseLabel
+        //   .classed("active", false)
+        //   .classed("inactive", true);
         smokesLabel
           .classed("active", false)
           .classed("inactive", true);
@@ -412,4 +408,3 @@ d3.csv("assets/js/admissions.csv").then(function(admissionsData) {
 }).catch(function(error) {
   console.log(error);
 });
-

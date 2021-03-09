@@ -2,16 +2,94 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Incarceration</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/d3Style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&display=swap">
+  <meta charset="utf-8">
+  <title>Mass Incarceration</title>
 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/d3Style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&display=swap">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="../Map/style.css">
 </head>
 
 <body>
+
+  <div class="row">
+    <div class="col-xs-12  col-md-9 text">
+      <div class="article">
+        <h2>Trends in State Prisoner Statistics</h2>
+        <p>The following report explores trends in prisoner statistics for inmates in the United States under state 
+          correctional authority.  Most of the data used for this analysis came from the U.S. Bureau of Justice Statistics,
+          and a few other sources that were used to shed light on trends in the BJS data.
+        </p>
+
+        <p>The results of an exploratory data analysis suggest that there are correlations between race and type of offense
+          that inmates are serving time for.  Additionally, the proportion of Whites, Blacks, and Hispanics serving time in
+          the U.S. state prisons do not match up with the racial breakdown of the overall U.S. population.
+        </p>
+
+        <p>Finally, the analysis demonstrates that each state in the U.S. has slightly different levels of imprisonment with 
+          respect to the state's population.  States such as Florida, Texas, Georgia, and Arizona have high imprisonment rates
+          compared to the average, while California, New York New Jersey, and others have relatively low imprisonment rates.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- The div where we will inject our map -->
+  <h2>Pie Charts</h2>
+  <select id="selDataset" onchange="getData(this.value)">
+      <option value="gender13">2013 Gender</option>
+      <option value="gender14">2014 Gender</option>
+      <option value="crime13">2013 Crime</option>
+      <option value="crime14">2014 Crime</option>
+  </select>
+
+  <div id="pie"></div>
+
+  <script src="../piecharts/data.js"></script>
+  <script src="../piecharts/plot.js"></script>
+
+  <div class="row">
+    <div class="col-xs-12  col-md-9 text">
+      <div class="article">
+        <h2>Prison Population by State in 2013 & 2014</h2>
+        <p>Need to type up something.
+        </p>
+
+        <p>Need to type up something.
+        </p>
+
+        <p>Need to type up something.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="map"></div>
+
+
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    
+    crossorigin=""></script>
+  <!-- API key -->
+  <script type="text/javascript" src="../Map/config.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- JS -->
+  <script type="text/javascript" src="../Map/logic.js"></script>
+
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-12 jumbrotron">
@@ -50,18 +128,17 @@
     </div>
   </div>
 
-  <!-- Footer-->
-  <div id="footer">
-    <p>The Coding Boot Camp&copy;2016</p>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-  <!-- <script type="text/javascript" src="assets/js/app.js"></script> -->
-  <script type="text/javascript" src="assets/js/app.js"></script>
-
+    <!-- Footer-->
+    <div id="footer">
+      <p>The Coding Boot Camp&copy;2016</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+    <!-- <script type="text/javascript" src="assets/js/app.js"></script> -->
+    <script type="text/javascript" src="../assets/js/app.js"></script>
 </body>
 
 </html>
