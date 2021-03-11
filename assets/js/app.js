@@ -31,7 +31,7 @@ var chosenYAxis = "inmate_pop_13";
 function xScale(jailData, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(jailData, d => d[chosenXAxis]) * 0.8,
+    .domain([d3.min(jailData, d => d[chosenXAxis]) * 0,
       d3.max(jailData, d => d[chosenXAxis]) * 1.05
     ])
     .range([0, width]);
@@ -42,7 +42,7 @@ function xScale(jailData, chosenXAxis) {
 function yScale(jailData, chosenYAxis) {
     // create scales
     var yLinearScale = d3.scaleLinear()
-      .domain([d3.min(jailData, d => d[chosenYAxis]) * 0.8,
+      .domain([d3.min(jailData, d => d[chosenYAxis]) * 0,
         d3.max(jailData, d => d[chosenYAxis]) * 1.05
       ])
       .range([height, 0]);
@@ -129,7 +129,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     labelposition = [80, -60];
   }
   else {
-      labelx = "inmate_pop_13:";
+      labelx = "state_pop_14:";
       labelposition = [80, -60];
   }
   if (chosenYAxis === "inmate_pop_14") {
@@ -139,7 +139,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     labely = "2013 Inmate Population";
   }
   else {
-      labely = "inmate_pop_2014";
+      labely = "inmate_pop_14";
   }
 
 
@@ -173,8 +173,9 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("../Resources/prison_custody_by_state.csv").then(function(jailData) {
-
+d3.csv("../Resources/prison_custody.csv").then(function(jailData) {
+  jailData.state_pop_14 = jailData["state_pop_14"]
+console.log(jailData)
   // parse data
   jailData.forEach(function(data) {
     data.state_pop_13 = +data.state_pop_13;
@@ -296,7 +297,7 @@ d3.csv("../Resources/prison_custody_by_state.csv").then(function(jailData) {
 
         // functions here found above csv import
         // updates x scale for new data
-        xLinearScale = xScale(healthData, chosenXAxis);
+        xLinearScale = xScale(jailData, chosenXAxis);
 
         // updates x axis with transition
         xAxis = renderXAxes(xLinearScale, xAxis);

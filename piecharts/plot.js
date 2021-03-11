@@ -5,13 +5,15 @@ var crime13 = Object.values(data.crime13);
 var crime14 = Object.values(data.crime14);
 
 // Create an array of music provider labels
-var labels = Object.keys(data.gender13, data.crime13);
-
+var labels1 = Object.keys(data.gender13);
+var labels2 = Object.keys(data.crime13);
+console.log(labels1)
+console.log(labels2)
 // Display the default plot
 function init() {
   var data = [{
     values: gender13,
-    labels: labels,
+    labels: labels1,
     type: "pie"
   }];
 
@@ -32,27 +34,43 @@ function getData() {
   // Assign the value of the dropdown menu option to a variable
   var dataset = dropdownMenu.property("value");
   // Initialize an empty array for the country's data
-  var data = [];
-
+  var data = [gender13, crime13];
+ console.log(dataset)
+ var labels = ""
   if (dataset == 'gender13') {
       data = gender13;
+      labels = labels1;
   }
   else if (dataset == 'gender14') {
       data = gender14;
+      labels = labels1;
   }
   else if (dataset == 'crime13') {
       data = crime13;
+      labels = labels2;
   }
   else if (dataset == 'crime14') {
     data = crime14;
+    labels = labels2;
 }
   // Call function to update the chart
-  updatePlotly(data);
+  updatePlotly(data, labels);
 }
 
 // Update the restyled plot's values
-function updatePlotly(newdata) {
-  Plotly.restyle("pie", "values", [newdata]);
+function updatePlotly(newdata, labels) {
+  // Plotly.restyle("pie", "values", [newdata]);
+  var data = [{
+    values: newdata,
+    labels: labels,
+    type: "pie"
+  }];
+
+  var layout = {
+    height: 600,
+    width: 800
+  };
+  Plotly.newPlot("pie", data, layout);
 }
 
 init();
