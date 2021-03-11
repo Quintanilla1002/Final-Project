@@ -66,11 +66,11 @@ div {text-align: center;}
 </style>
 
 <body>
-
+  <div class="container">
   <div class="row">
-    <div class="col-xs-12  col-md-9 text">
+    <div class="col-xs-12 col-md-12 jumbrotron">
       <div class="article">
-        <h1>Trends in State Prisoner Statistics</h1>
+        <strong><h1>Trends in State Prisoner Statistics</h1></strong>
         <p>The following report explores trends in prisoner statistics for inmates in the United States under state 
           correctional authority.  Most of the data used for this analysis came from the U.S. Bureau of Justice Statistics,
           and a few other sources that were used to shed light on trends in the BJS data.
@@ -91,39 +91,127 @@ div {text-align: center;}
 </div>
   <!-- The div where we will inject our pie charts -->
   <style>
-    h3 {text-align:center;}
+    h2 {text-align: center;}
     p {text-align: center;}
     div {text-align: center;}
     </style>
-  <h3>Prison Population by Race & Crime</h3>
+    <div class="container">
+    <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+        <h2>Introduction</h2>
+        <p>At any one time, one in thirty-five American adults is either in prison, on parole, or on probation. 
+          Recent criticism of the War on Drugs by President Obama and other prominent leaders has led to a lot of 
+          speculation on why the U.S. has such a high number of prisoners relative to its population and why 
+          inmate populations are growing.
+        </p>
+
+        <p>While this report does not expect to find earth-shattering results that have not been identified, the 
+          goal is to use government data from the BJS to see if any connections can be made with other demographic 
+          U.S. data. Are recent publications that critique the U.S. prison system warranted? Can these findings be 
+          replicated using fairly straightforward data manipulation? My analysis aims to answer the following questions:
+
+        <p>Are there more men in prison than women?</p>
+          
+        </p>What kind of charges are men sent to prison for, and are they different from the crimes women are charged for?</p>
+          
+        </p>What is the racial spread of prison inmates?</p>
+          
+        </p>Do these patterns vary depending on the state in which the prison is located?</p>
+          
+        </p>Have these trends changed over time?</p>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+</div>
+</div>
+  <style>
+    h3 {text-align:left;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </div>
+    
+  <h3>Pie Charts for Prison Population by Race & Crime</h3>
   <select id="selDataset" onchange="getData(this.value)">
       <option value="race13">2013 Race</option>
       <option value="race14">2014 Race</option>
       <option value="crime13">2013 Crime</option>
       <option value="crime14">2014 Crime</option>
   </select>
-
+<div class="container"></div>
   <div id="pie"></div>
 
   <script src="../piecharts/data.js"></script>
   <script src="../piecharts/plot.js"></script>
-
+  <div>
+  <style>
+    h4 {text-align:center;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </div>
+    <div class="container">
   <div class="row">
-    <div class="col-xs-12  col-md-9 text">
+    <div class="col-xs-12 col-md-12 jumbrotron">
       <div class="article">
-        <h2>Prison Population by State in 2013 & 2014</h2>
-        <p>Need to type up something.
-        </p>
+        <h4>Racial spread of Prison Inmates</h4>
+        <p>From the 2013 Race Pie Chart above, we see that Black inmates make up the largest portion out of all inmates at 
+          40.1%, with White inmates just lower than that at 37.7%. While this data alone suggests that the ratio of 
+          White to Black inmates is fairly even, looking at the total US population racial breakdown reveals much 
+          more. According to this source, about 12% of the US population is Black and and 61% of the US population 
+          is White.</p>
 
-        <p>Need to type up something.
-        </p>
+          <p>This tells us that a disproportionate amount of Blacks are in state prisons compared to Whites when looking 
+            at the proportion of the US population that each race makes up. What this finding cannot tell us, however, if 
+            this is due to racist tendencies of the judicial system or differences in crime prevalence within each race.
+          </p>
+     </div>
+    </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div>
+  <style>
+    h5 {text-align:center;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </div>
+    <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+        <h5>Distribution of Inmates by Offense Category</h5>
+        <p>From the 2013 Crime & 2014 Crime Pie Charts, we can see that the most common offense for which inmates are sentenced to state prisons is 
+          Violent crimes. For federal prisons, Drug offenses account for about 50% of inmates.</p>
 
-        <p>Need to type up something.</p>
-      </div>
+        </div>
+     </div>
     </div>
   </div>
 </div>
 <!-- The div where we will inject our pie charts -->
+<div>
+  <style>
+    h6 {text-align:center;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </div>
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-12 jumbrotron">
+  <div class="article">
+    <h6>Map showing 2013 & 2014 Prison Inmate Population per State</h6>
+ </div>
+</div>
+</div>
+</div>
   <div id="map"></div>
 
   <!-- Leaflet JS -->
@@ -140,9 +228,10 @@ div {text-align: center;}
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-12 jumbrotron">
-        <h1>Incarceration</h1>
+        <h1>Breaking Down Prisoner Populations by State </h1>
       </div>
     </div>
+    <div class="container"></div>
     <div class="row">
       <div class="col-xs-12  col-md-9">
         <div id="scatter">
@@ -150,30 +239,48 @@ div {text-align: center;}
         </div>
       </div>
     </div>
+    <div class="container"></div>
     <div class="row">
-      <div class="col-xs-12  col-md-9 text">
+      <div class="col-xs-12 col-md-12 jumbrotron">
         <div class="article">
-          <h2>Correlations Discovered Between Health Risks and Age, Income</h2>
-          <p>There appears to be a significant correlation in which the states with a higher percentage of their population
-            in poverty also leads to a higher percentage of population that lacks healthcare, are smokers, and are also obese.
-            This would lead one to assume that the states with the higher percentage of population living in poverty would have 
-            a higher percentage of unhealthy people in general.
+          
+          <p>The scatterplot above reference a state in the US’s total population compared to its inmate population. 
+            The second graph is a zoomed-in version that excludes California, Texas, Florida, and New York in order 
+            to get a better look at the lower left corner where most of the states lie.
           </p>
 
-          <p>There does not appear to be any significant correlation between the median age of a states population an the 
-            percentage of the population that lacks healthcare or is obese. There does appear to be a slight correlation
-            between the median age and the percentage of smokers. Median age may not be the best indicator to use in order 
-            to determine the overall health of a population.
+          <p>States that have a higher inmate population to total population ratio, meaning they have greater imprisonment
+             rate. From my analysis, states that appear to have these high rates are Georgia, Arizona, Louisiana, Oklahoma, 
+             and others. States such as Massachusetts, Washington, New Jersey, and Minnesota have relatively low imprisonment 
+             rates compared to the average.
           </p>
 
-          <p>There appears to be a significant correlation in which the states with a higher household median income have 
-            significantly less of their percentage of population that lack healthcare, are smokers, and are obese. This could 
-            lead one to assume that the states with the higher the median income of the population in a given state would have 
-            a higher percentage of healthy people compared to states with a smaller household median income.</p>
         </div>
       </div>
     </div>
   </div>
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+      <strong><h7>Limitations of the Data</h7></strong>
+        <p>A major limitation of my data, and thus my biggest disappointment with my analysis, is that the Bureau of 
+          Justice statistics does not provide data on a per-prisoner basis. I was hoping to have data that allowed me to
+          look at each prisoner’s demographics, sentencing characteristics, and other information. With that, I would have 
+          liked to investigate if there were racial or gender differences in sentencing characteristics for the exact same 
+          offenses. However, likely due to privacy rules for inmates, all of the data was very general. For example, it 
+          gave me the percentage of Whites in prison for Violent crimes, but didn’t allow me to see how one particular White 
+          inmate’s sentence for a Violent crime compared to one particular Black inmate’s sentence for the same crime.
+        </p>
+
+        <p>Without that specifity in the data, I mostly recreated analysis done by the BJS with this data. One way I expanded
+          on this was by comparing the prisoner statistics data to other data such as US population breakdowns.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
     
     
     </div>
