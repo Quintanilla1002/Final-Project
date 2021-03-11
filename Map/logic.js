@@ -354,7 +354,10 @@ var overlayMaps = {
 var myMap = L.map("map", {
   center: [37.09, -95.71],
   zoom: 3.5,
+  zoomDelta: .25,
+  zoomSnap: 0,
   layers: [light, cityLayer]
+  
 });
 
 // Pass our map layers into our layer control

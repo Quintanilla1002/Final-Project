@@ -173,7 +173,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("../Resources/prison_custody.csv").then(function(jailData) {
+d3.csv("../Resources/prison_custody_by_state.csv").then(function(jailData) {
   jailData.state_pop_14 = jailData["state_pop_14"]
 console.log(jailData)
   // parse data

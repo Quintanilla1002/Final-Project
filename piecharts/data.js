@@ -1,11 +1,11 @@
 var data = {
-    gender13: {
+    race13: {
         Black: 989700,
         White: 930600,
         Hispanic: 545300
     },
 
-    gender14: {
+    race14: {
         Black: 104500,
         White: 81000,
         Hispanic: 90800
