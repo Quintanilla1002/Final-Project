@@ -89,6 +89,8 @@ div {text-align: center;}
     </div>
   </div>
 </div>
+<br>
+<br>
   <!-- The div where we will inject our pie charts -->
   <style>
     h2 {text-align: center;}
@@ -110,17 +112,14 @@ div {text-align: center;}
           goal is to use government data from the BJS to see if any connections can be made with other demographic 
           U.S. data. Are recent publications that critique the U.S. prison system warranted? Can these findings be 
           replicated using fairly straightforward data manipulation? My analysis aims to answer the following questions:
-
-        <p>Are there more men in prison than women?</p>
-          
-        </p>What kind of charges are men sent to prison for, and are they different from the crimes women are charged for?</p>
-          
-        </p>What is the racial spread of prison inmates?</p>
-          
-        </p>Do these patterns vary depending on the state in which the prison is located?</p>
-          
-        </p>Have these trends changed over time?</p>
-        </p>
+    <ul>
+        <li>Are there more men in prison than women?</li>
+        <li>What kind of charges are men sent to prison for, and are they different from the crimes women are charged for?</li>
+        <li>What is the racial spread of prison inmates?</li>
+        <li>Do these patterns vary depending on the state in which the prison is located?</li>
+        <li>Have these trends changed over time?</li>
+    </ul>
+        
       </div>
     </div>
   </div>
@@ -195,6 +194,7 @@ div {text-align: center;}
     </div>
   </div>
 </div>
+<br>
 <!-- The div where we will inject our pie charts -->
 <div>
   <style>
@@ -208,6 +208,8 @@ div {text-align: center;}
 <div class="col-xs-12 col-md-12 jumbrotron">
   <div class="article">
     <h6>Map showing 2013 & 2014 Prison Inmate Population per State</h6>
+    <br>
+    <br>
  </div>
 </div>
 </div>
@@ -224,7 +226,8 @@ div {text-align: center;}
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <!-- JS -->
   <script type="text/javascript" src="../Map/logic.js"></script>
-
+<br>
+<br>
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-12 jumbrotron">
@@ -254,7 +257,8 @@ div {text-align: center;}
              and others. States such as Massachusetts, Washington, New Jersey, and Minnesota have relatively low imprisonment 
              rates compared to the average.
           </p>
-
+<br>
+<br>
         </div>
       </div>
     </div>
@@ -264,6 +268,8 @@ div {text-align: center;}
     <div class="col-xs-12 col-md-12 jumbrotron">
       <div class="article">
       <strong><h7>Limitations of the Data</h7></strong>
+      <br>
+      <br>
         <p>A major limitation of my data, and thus my biggest disappointment with my analysis, is that the Bureau of 
           Justice statistics does not provide data on a per-prisoner basis. I was hoping to have data that allowed me to
           look at each prisoner’s demographics, sentencing characteristics, and other information. With that, I would have 
@@ -281,7 +287,38 @@ div {text-align: center;}
     </div>
   </div>
 </div>
-    
+<div class="row">
+  <div class="column">
+<img src="./Images/Gender_line.png"/>
+</div>
+<div class="column">
+  <img src="./Images/Gender_Prediction.png"/>
+</div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+      <strong><h7>Prediction from Machine Learning</h7></strong>
+      <br>
+      <br>
+        <p>A major limitation of my data, and thus my biggest disappointment with my analysis, is that the Bureau of 
+          Justice statistics does not provide data on a per-prisoner basis. I was hoping to have data that allowed me to
+          look at each prisoner’s demographics, sentencing characteristics, and other information. With that, I would have 
+          liked to investigate if there were racial or gender differences in sentencing characteristics for the exact same 
+          offenses. However, likely due to privacy rules for inmates, all of the data was very general. For example, it 
+          gave me the percentage of Whites in prison for Violent crimes, but didn’t allow me to see how one particular White 
+          inmate’s sentence for a Violent crime compared to one particular Black inmate’s sentence for the same crime.
+        </p>
+
+        <p>Without that specifity in the data, I mostly recreated analysis done by the BJS with this data. One way I expanded
+          on this was by comparing the prisoner statistics data to other data such as US population breakdowns.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div> 
     
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
