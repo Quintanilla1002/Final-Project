@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .content {
+      max-width: 500px;
+      margin:auto;
+      background: lightblue;
+      padding: 10px;
+      }
+    
+  </style>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mass Incarceration</title>
+
+  <link rel="stylesheet" href="./background/css/bootstrap.min.css">
+  <!--main-->
+  <link rel="stylesheet" href="./background/css/style.css">
+  <!--google fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courgette">
+  <!-- font awesome-->
+  <!-- for local copies of font awesome, ensure webfont folder is also in local root directory-->
+  <link rel="stylesheet" href="./background/css/all.min.css">
+  </head>
+<body>
+  <div class="container">
+      <div class="row max-height align-items-center text-center">
+          <div class="col">
+              <!-- <button class="btn btn-outline-secondary">Click Me!</button> -->
+          </div> 
+
+      </div>
+             
+  </div>
+  
+  <!--jQuery-->
+  <script src="./background/js/jquery-3.4.1.min.js"></script>
+  <!--bootstrap-->
+  <script src="./background/js/bootstrap.bundle.min.js"></script>
+  <script src="./background/js/script.js"></script>
+</body>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/d3Style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&display=swap">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../Map/style.css">
+</head>
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style>
+
+<body>
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+        <strong><h1>Trends in State Prisoner Statistics</h1></strong>
+        <p>The following report explores trends in prisoner statistics for inmates in the United States under state 
+          correctional authority.  Most of the data used for this analysis came from the U.S. Bureau of Justice Statistics,
+          and a few other sources that were used to shed light on trends in the BJS data.
+        </p>
+
+        <p>The results of an exploratory data analysis suggest that there are correlations between race and type of offense
+          that inmates are serving time for.  Additionally, the proportion of Whites, Blacks, and Hispanics serving time in
+          the U.S. state prisons do not match up with the racial breakdown of the overall U.S. population.
+        </p>
+
+        <p>Finally, the analysis demonstrates that each state in the U.S. has slightly different levels of imprisonment with 
+          respect to the state's population.  States such as Florida, Texas, Georgia, and Arizona have high imprisonment rates
+          compared to the average, while California, New York New Jersey, and others have relatively low imprisonment rates.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+  <!-- The div where we will inject our pie charts -->
+  <style>
+    h2 {text-align: center;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    <div class="container">
+    <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+        <h2>Introduction</h2>
+        <p>At any one time, one in thirty-five American adults is either in prison, on parole, or on probation. 
+          Recent criticism of the War on Drugs by President Obama and other prominent leaders has led to a lot of 
+          speculation on why the U.S. has such a high number of prisoners relative to its population and why 
+          inmate populations are growing.
+        </p>
+
+        <p>While this report does not expect to find earth-shattering results that have not been identified, the 
+          goal is to use government data from the BJS to see if any connections can be made with other demographic 
+          U.S. data. Are recent publications that critique the U.S. prison system warranted? Can these findings be 
+          replicated using fairly straightforward data manipulation? My analysis aims to answer the following questions:
+    <ul>
+        <li>Are there more men in prison than women?</li>
+        <li>What kind of charges are men sent to prison for, and are they different from the crimes women are charged for?</li>
+        <li>What is the racial spread of prison inmates?</li>
+        <li>Do these patterns vary depending on the state in which the prison is located?</li>
+        <li>Have these trends changed over time?</li>
+    </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+</div>
+</div>
+  <style>
+    h3 {text-align:left;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </div>
+    
+  <h3>Pie Charts for Prison Population by Race & Crime</h3>
+  <select id="selDataset" onchange="getData(this.value)">
+      <option value="race13">2013 Race</option>
+      <option value="race14">2014 Race</option>
+      <option value="crime13">2013 Crime</option>
+      <option value="crime14">2014 Crime</option>
+  </select>
+<div class="container"></div>
+  <div id="pie"></div>
+
+  <script src="../piecharts/data.js"></script>
+  <script src="../piecharts/plot.js"></script>
+  <div>
+  <style>
+    h4 {text-align:center;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </div>
+    <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+        <h4>Racial spread of Prison Inmates</h4>
+        <p>From the 2013 Race Pie Chart above, we see that Black inmates make up the largest portion out of all inmates at 
+          40.1%, with White inmates just lower than that at 37.7%. While this data alone suggests that the ratio of 
+          White to Black inmates is fairly even, looking at the total US population racial breakdown reveals much 
+          more. According to this source, about 12% of the US population is Black and and 61% of the US population 
+          is White.</p>
+
+          <p>This tells us that a disproportionate amount of Blacks are in state prisons compared to Whites when looking 
+            at the proportion of the US population that each race makes up. What this finding cannot tell us, however, if 
+            this is due to racist tendencies of the judicial system or differences in crime prevalence within each race.
+          </p>
+     </div>
+    </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div>
+  <style>
+    h5 {text-align:center;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </div>
+    <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+        <h5>Distribution of Inmates by Offense Category</h5>
+        <p>From the 2013 Crime & 2014 Crime Pie Charts, we can see that the most common offense for which inmates are sentenced to state prisons is 
+          Violent crimes. For federal prisons, Drug offenses account for about 50% of inmates.</p>
+
+        </div>
+     </div>
+    </div>
+  </div>
+</div>
+<br>
+<!-- The div where we will inject our pie charts -->
+<div>
+  <style>
+    h6 {text-align:center;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </div>
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-12 jumbrotron">
+  <div class="article">
+    <h6>Map showing 2013 & 2014 Prison Inmate Population per State</h6>
+    <br>
+    <br>
+ </div>
+</div>
+</div>
+</div>
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    
+    crossorigin=""></script>
+  <!-- API key -->
+  <script type="text/javascript" src="../Map/config.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- JS -->
+  <script type="text/javascript" src="../Map/logic.js"></script>
+<br>
+<br>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-12 jumbrotron">
+        <h1>Breaking Down Prisoner Populations by State </h1>
+      </div>
+    </div>
+    <div class="container"></div>
+    <div class="row">
+      <div class="col-xs-12  col-md-9">
+        <div id="scatter">
+          <!-- We append our chart here. -->
+        </div>
+      </div>
+    </div>
+    <div class="container"></div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12 jumbrotron">
+        <div class="article">
+          
+          <p>The scatterplot above reference a state in the US’s total population compared to its inmate population. 
+            The second graph is a zoomed-in version that excludes California, Texas, Florida, and New York in order 
+            to get a better look at the lower left corner where most of the states lie.
+          </p>
+
+          <p>States that have a higher inmate population to total population ratio, meaning they have greater imprisonment
+             rate. From my analysis, states that appear to have these high rates are Georgia, Arizona, Louisiana, Oklahoma, 
+             and others. States such as Massachusetts, Washington, New Jersey, and Minnesota have relatively low imprisonment 
+             rates compared to the average.
+          </p>
+<br>
+<br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+      <strong><h7>Limitations of the Data</h7></strong>
+      <br>
+      <br>
+        <p>A major limitation of my data, and thus my biggest disappointment with my analysis, is that the Bureau of 
+          Justice statistics does not provide data on a per-prisoner basis. I was hoping to have data that allowed me to
+          look at each prisoner’s demographics, sentencing characteristics, and other information. With that, I would have 
+          liked to investigate if there were racial or gender differences in sentencing characteristics for the exact same 
+          offenses. However, likely due to privacy rules for inmates, all of the data was very general. For example, it 
+          gave me the percentage of Whites in prison for Violent crimes, but didn’t allow me to see how one particular White 
+          inmate’s sentence for a Violent crime compared to one particular Black inmate’s sentence for the same crime.
+        </p>
+
+        <p>Without that specifity in the data, I mostly recreated analysis done by the BJS with this data. One way I expanded
+          on this was by comparing the prisoner statistics data to other data such as US population breakdowns.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+<img src="./Images/Gender_line.png"/>
+</div>
+<div class="column">
+  <img src="./Images/Gender_Prediction.png"/>
+</div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 jumbrotron">
+      <div class="article">
+      <strong><h7>Prediction from Machine Learning</h7></strong>
+      <br>
+      <br>
+        <p>A major limitation of my data, and thus my biggest disappointment with my analysis, is that the Bureau of 
+          Justice statistics does not provide data on a per-prisoner basis. I was hoping to have data that allowed me to
+          look at each prisoner’s demographics, sentencing characteristics, and other information. With that, I would have 
+          liked to investigate if there were racial or gender differences in sentencing characteristics for the exact same 
+          offenses. However, likely due to privacy rules for inmates, all of the data was very general. For example, it 
+          gave me the percentage of Whites in prison for Violent crimes, but didn’t allow me to see how one particular White 
+          inmate’s sentence for a Violent crime compared to one particular Black inmate’s sentence for the same crime.
+        </p>
+
+        <p>Without that specifity in the data, I mostly recreated analysis done by the BJS with this data. One way I expanded
+          on this was by comparing the prisoner statistics data to other data such as US population breakdowns.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div> 
+    
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+    <script type="text/javascript" src="../assets/js/app.js"></script>
+</body>
+
+</html>
