@@ -304,7 +304,7 @@ var cities = [
 
 // An array which will be used to store created cityMarkers
 var jailIcon = L.icon({
-  iconUrl: "../Map/jail_icon.png",
+  iconUrl: "Map/jail_icon.png",
   iconSize: [25, 25],
 });
 // var layers = {
